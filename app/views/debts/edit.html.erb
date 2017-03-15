@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @debt.errors.any? %>
+  <% @debt.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Debt #<%= @debt.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_debt/<%= @debt.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :email, @debt.user_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for user_id_2 -->
+      <div class="form-group">
+        <label for="user_id_2" class="control-label">
+          User id 2
+        </label>
+
+        <%= select_tag(:user_id_2, options_from_collection_for_select(User.all, :id, :email, @debt.user_id_2), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Debt
+      </button>
+      or
+      <a href="/debts/<%= @debt.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

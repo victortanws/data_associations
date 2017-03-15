@@ -1,4 +1,4 @@
-class Payment < ApplicationRecord
+class PaymentMethod < ApplicationRecord
   # Direct associations
 
   belongs_to :user

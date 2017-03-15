@@ -1,6 +1,6 @@
-ActiveAdmin.register Payment do
+ActiveAdmin.register PaymentMethod do
 
- permit_params :user_id, :amount, :owed_to_id
+ permit_params :user_id
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

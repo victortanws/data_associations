@@ -19,7 +19,31 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :email, @payment.user_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for amount -->
+      <div class="form-group">
+        <label for="amount" class="control-label">
+          Amount
+        </label>
+
+        <input type="text" id="amount" name="amount" placeholder="Amount" class="form-control" value="<%= @payment.amount %>">
+      </div>
+
+      <!-- Label and input for owed_to_id -->
+      <div class="form-group">
+        <label for="owed_to_id" class="control-label">
+          Owed to
+        </label>
+
+        <input type="text" id="owed_to_id" name="owed_to_id" placeholder="Owed to" class="form-control" value="<%= @payment.owed_to_id %>">
+      </div>
 
       <button class="btn btn-success">
         Create Payment
