@@ -1,14 +1,4 @@
 class PaymentsController < ApplicationController
-  before_action :current_user_must_be_payment_user, :only => [:edit, :update, :destroy]
-
-  def current_user_must_be_payment_user
-    payment = Payment.find(params[:id])
-
-    unless current_user == payment.user
-      redirect_to :back, :alert => "You are not authorized for that."
-    end
-  end
-
   def index
     @q = Payment.ransack(params[:q])
     @payments = @q.result(:distinct => true).includes(:user).page(params[:page]).per(10)
@@ -32,6 +22,8 @@ class PaymentsController < ApplicationController
     @payment = Payment.new
 
     @payment.user_id = params[:user_id]
+    @payment.amount = params[:amount]
+    @payment.owed_to_id = params[:owed_to_id]
 
     save_status = @payment.save
 
@@ -57,6 +49,10 @@ class PaymentsController < ApplicationController
 
   def update
     @payment = Payment.find(params[:id])
+
+    @payment.user_id = params[:user_id]
+    @payment.amount = params[:amount]
+    @payment.owed_to_id = params[:owed_to_id]
 
     save_status = @payment.save
 

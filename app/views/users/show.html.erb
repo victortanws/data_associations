@@ -21,6 +21,99 @@
   </div>
 </div>
 
+<!-- A User has many payment_methods -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Payment Methods
+      </li>
+
+      <% @user.payment_methods.each do |payment_method| %>
+        <li class="list-group-item">
+          <a href="/payment_methods/<%= payment_method.id %>">
+            <%= payment_method.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/payment_methods/<%= payment_method.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/payment_methods/<%= payment_method.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_payment_method/<%= payment_method.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many debts -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Debts
+      </li>
+
+      <% @user.debts.each do |debt| %>
+        <li class="list-group-item">
+          <a href="/debts/<%= debt.id %>">
+            <%= debt.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/debts/<%= debt.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/debts/<%= debt.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_debt/<%= debt.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many incurred_debts -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Incurred Debts
+      </li>
+
+      <% @user.incurred_debts.each do |debt| %>
+        <li class="list-group-item">
+          <a href="/debts/<%= debt.id %>">
+            <%= debt.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/debts/<%= debt.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/debts/<%= debt.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_debt/<%= debt.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
 <!-- A User has many payments -->
 
 <div class="row">
@@ -33,20 +126,18 @@
       <% @user.payments.each do |payment| %>
         <li class="list-group-item">
           <a href="/payments/<%= payment.id %>">
-            <%= payment.user_id %>
+            <%= payment.created_at %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/payments/<%= payment.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <%if current_user == payment.user %>
-              <a href="/payments/<%= payment.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="/delete_payment/<%= payment.id %>" class="btn btn-danger" rel="nofollow">
-                <i class="fa fa-trash-o"></i>
-              </a>
-            <% end %>
+            <a href="/payments/<%= payment.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_payment/<%= payment.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
           </div>
         </li>
       <% end %>
