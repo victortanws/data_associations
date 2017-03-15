@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
   end
 
   def index
-    @payments = Payment.all
+    @payments = Payment.page(params[:page]).per(10)
 
     render("payments/index.html.erb")
   end
