@@ -47,8 +47,6 @@ class PaymentsController < ApplicationController
   def update
     @payment = Payment.find(params[:id])
 
-    @payment.user_id = params[:user_id]
-
     save_status = @payment.save
 
     if save_status == true
