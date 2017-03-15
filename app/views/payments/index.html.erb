@@ -15,7 +15,13 @@
 
       <% @payments.each do |payment| %>
       <tr>
-        <td><%= payment.user.email %></td>
+        <td>
+          <% if payment.user.present? %>
+            <a href="/users/<%= payment.user.id %>">
+              <%= payment.user.email %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/payments/<%= payment.id %>" class="btn btn-primary">Show</a>
           
