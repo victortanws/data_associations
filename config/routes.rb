@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "payments#index"
   # Routes for the Payment resource:
   # CREATE
   get "/payments/new", :controller => "payments", :action => "new"
